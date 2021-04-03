@@ -1,0 +1,8 @@
+﻿Renderer.obj : error LNK2019: unresolved external symbol _gladLoadGLLoader referenced in function "public: bool __thiscall Renderer::Init(void)" (?Init@Renderer@@QAE_NXZ)
+Renderer.obj : error LNK2019: unresolved external symbol _glfwInit referenced in function "public: bool __thiscall Renderer::Init(void)" (?Init@Renderer@@QAE_NXZ)
+Renderer.obj : error LNK2019: unresolved external symbol _glfwTerminate referenced in function "public: bool __thiscall Renderer::Init(void)" (?Init@Renderer@@QAE_NXZ)
+Renderer.obj : error LNK2019: unresolved external symbol _glfwWindowHint referenced in function "public: bool __thiscall Renderer::Init(void)" (?Init@Renderer@@QAE_NXZ)
+Renderer.obj : error LNK2019: unresolved external symbol _glfwCreateWindow referenced in function "public: bool __thiscall Renderer::Init(void)" (?Init@Renderer@@QAE_NXZ)
+Renderer.obj : error LNK2019: unresolved external symbol _glfwGetProcAddress referenced in function "public: bool __thiscall Renderer::Init(void)" (?Init@Renderer@@QAE_NXZ)
+C:\Users\ichko\Documents\workspace\ChaosTask\Fractal\OpenGL\GLFW\glfw3.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\ichko\Documents\workspace\ChaosTask\Fractal\Debug\Fractal.exe : fatal error LNK1120: 6 unresolved externals
