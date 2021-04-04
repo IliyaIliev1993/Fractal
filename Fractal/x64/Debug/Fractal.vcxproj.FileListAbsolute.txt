@@ -1,2 +1,3 @@
 C:\Users\ichko\Documents\workspace\ChaosTask\Fractal\x64\Debug\Fractal.exe
 C:\Users\Polia\Documents\workspace\ChaosTask\Fractal\x64\Debug\Fractal.exe
+C:\Users\Polia\Documents\workspace\Fractal\Fractal\x64\Debug\Fractal.exe
