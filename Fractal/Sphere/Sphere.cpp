@@ -136,7 +136,6 @@ void Sphere::Draw(Shader& shaderSphere)
 {
 	// activate shader
 	shaderSphere.use();
-
 	shaderSphere.setMat4("model", m_model);
 
 	glBindVertexArray(VAO_Sphere);

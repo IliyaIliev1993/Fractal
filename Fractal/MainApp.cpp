@@ -176,11 +176,6 @@ void MainApp::DrawSideSpheresLevel1(float& fXMother,
 		modelChilds = glm::rotate(modelChilds, glm::radians(fRotateBYOwnAxisX), glm::vec3(1.0f, 0.0f, 0.0f));
 		m_sphere.SetModelMatrix(modelChilds);
 		m_sphere.Draw(shader);
-		if (unLevel == 4)
-		{
-			DrawSideSpheresLevel2(fXChild, fYChild, fZChild, fMainMotherSphereRadius, fCurrentScaleFactor, unLevel, shader);
-			DrawTopSpheresLevel2(fXChild, fYChild, fZChild, fMainMotherSphereRadius, fCurrentScaleFactor, unLevel, shader);
-		}
 	}
 
 }
@@ -226,89 +221,6 @@ void MainApp::DrawTopSpheresLevel1(float& fXMother,
 	}
 }
 
-void MainApp::DrawSideSpheresLevel2(float& fXMother,
-	float& fYMother,
-	float& fZMother,
-	float& fMotherRadius,
-	float& fMotherScaleFactor,
-	unsigned int& unLevel,
-	Shader& shader)
-{
-	const int nSpheresAroundMother = 6;
-	const int nSpheresInTopOfMother = 3;
-
-	/*Side Childs*/
-	for (int i = 1; i <= nSpheresAroundMother; i++)
-	{
-		float fXMotherChild = fXMother;
-		float fYMotherChild = fYMother;
-		float fZMotherChild = fZMother;
-		float fMainMotherSphereRadius = fMotherRadius / 3.0f;
-		float fCurrentScaleFactor = fMotherScaleFactor / 3.0f;
-		const float fAngleAroudMother = 60.0f;
-		const float fDistanceToTranslate = (fMotherRadius + fMainMotherSphereRadius);
-		const float fCurrentAngle = fAngleAroudMother * static_cast<float>(i);
-		const float fRotateByOwnAxisY = 90.0f + (180.0f - fCurrentAngle);
-		const float fRotateBYOwnAxisX = 0.0f;
-		const float fTHETA = glm::radians(fCurrentAngle); /*Theta is the angle that is from 0 to 360 LONGITUDE*/
-		const float fPHI = glm::radians(fRotateBYOwnAxisX); /*Theta is the angle that is from 90 to -90 LATITUDE*/
-		float fXChild = fXMotherChild + fDistanceToTranslate * cos(fPHI) * cos(fTHETA);
-		float fYChild = fYMotherChild + fDistanceToTranslate * sinf(fPHI);
-		float fZChild = fZMotherChild + fDistanceToTranslate * cos(fPHI) * sin(fTHETA);
-
-		glm::mat4 modelChilds = glm::mat4(1.0f);
-		modelChilds = glm::translate(modelChilds, glm::vec3(fXChild, fYChild, fZChild));
-		modelChilds = glm::translate(modelChilds, glm::vec3(fXMotherChild, fYMotherChild, fZMotherChild));
-		modelChilds = glm::scale(modelChilds, glm::vec3(fCurrentScaleFactor, fCurrentScaleFactor, fCurrentScaleFactor));
-		modelChilds = glm::rotate(modelChilds, glm::radians(fRotateByOwnAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelChilds = glm::rotate(modelChilds, glm::radians(fRotateBYOwnAxisX), glm::vec3(1.0f, 0.0f, 0.0f));
-		m_sphere.SetModelMatrix(modelChilds);
-		m_sphere.Draw(shader);
-	}
-
-}
-
-void MainApp::DrawTopSpheresLevel2(float& fXMother,
-	float& fYMother,
-	float& fZMother,
-	float& fMotherRadius,
-	float& fMotherScaleFactor,
-	unsigned int& unLevel,
-	Shader& shader)
-{
-	const int nSpheresAroundMother = 6;
-	const int nSpheresInTopOfMother = 3;
-	unsigned int unLevelChild = unLevel;
-	/*Top Childs*/
-	for (int i = 1; i <= nSpheresInTopOfMother; i++)
-	{
-		float fXMotherChild = fXMother;
-		float fYMotherChild = fYMother;
-		float fZMotherChild = fZMother;
-		float fMainMotherSphereRadius = fMotherRadius / 3.0f;
-		float fCurrentScaleFactor = fMotherScaleFactor / 3.0f;
-		const float fAngleAroudMother = 120.0f;
-		const float fDistanceToTranslate = (fMotherRadius + fMainMotherSphereRadius);
-		const float fCurrentAngle = fAngleAroudMother * static_cast<float>(i);
-		const float fRotateByOwnAxisY = 90.0f + (180.0f - fCurrentAngle);
-		const float fRotateBYOwnAxisX = 60.0f;
-		const float fTHETA = glm::radians(fCurrentAngle); /*Theta is the angle that is from 0 to 360 LONGITUDE*/
-		const float fPHI = glm::radians(fRotateBYOwnAxisX); /*Theta is the angle that is from 90 to -90 LATITUDE*/
-		float fXChild = fXMotherChild + fDistanceToTranslate * cos(fPHI) * cos(fTHETA);
-		float fYChild = fYMotherChild + fDistanceToTranslate * sinf(fPHI);
-		float fZChild = fZMotherChild + fDistanceToTranslate * cos(fPHI) * sin(fTHETA);
-
-		glm::mat4 modelChilds = glm::mat4(1.0f);
-		modelChilds = glm::translate(modelChilds, glm::vec3(fXChild, fYChild, fZChild));
-		modelChilds = glm::translate(modelChilds, glm::vec3(fXMotherChild, fYMotherChild, fZMotherChild));
-		modelChilds = glm::scale(modelChilds, glm::vec3(fCurrentScaleFactor, fCurrentScaleFactor, fCurrentScaleFactor));
-		modelChilds = glm::rotate(modelChilds, glm::radians(fRotateByOwnAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
-		modelChilds = glm::rotate(modelChilds, glm::radians(fRotateBYOwnAxisX), glm::vec3(1.0f, 0.0f, 0.0f));
-		m_sphere.SetModelMatrix(modelChilds);
-		m_sphere.Draw(shader);
-	}
-}
-
 void MainApp::Run()
 {
 	while (!glfwWindowShouldClose(m_rend->GetWindowPtr()))
@@ -316,7 +228,7 @@ void MainApp::Run()
 		m_ShaderSphere.use();
 		HandleEvent(m_rend->GetWindowPtr());
 		m_camera->Process(m_ShaderSphere);
-		m_rend->Process(m_ShaderSphere);
+		m_rend->Process();
 		m_rend->ClearGlobalColor();
 		m_rend->DrawPolygonLineMode();
 
@@ -355,7 +267,7 @@ void MainApp::HandleEvent(GLFWwindow* windowPtr)
 			m_unMaxLevels = 1;
 		}
 
-		std::cout << m_unMaxLevels << std::endl;
+		std::cout << "Current Level -> " << m_unMaxLevels << std::endl;
 	}
 	if (glfwGetKey(m_rend->GetWindowPtr(), GLFW_KEY_LEFT) == GLFW_RELEASE && m_bPressedLeft)
 	{
@@ -366,12 +278,12 @@ void MainApp::HandleEvent(GLFWwindow* windowPtr)
 	{
 		m_bPressedRight = true;
 		m_unMaxLevels++;
-		if (m_unMaxLevels >= 4)
+		if (m_unMaxLevels >= 3)
 		{
-			m_unMaxLevels = 4;
+			m_unMaxLevels = 3;
 		}
 
-		std::cout << m_unMaxLevels << std::endl;
+		std::cout << "Current Level -> " << m_unMaxLevels << std::endl;
 	}
 
 	if (glfwGetKey(m_rend->GetWindowPtr(), GLFW_KEY_RIGHT) == GLFW_RELEASE && m_bPressedRight)

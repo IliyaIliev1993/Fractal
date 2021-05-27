@@ -57,40 +57,6 @@ private:
 						unsigned int& unLevel,
 						Shader& shader);
 
-	/*DrawSideSpheres Level2*/
-	void DrawSideSpheresLevel2(float& fXMother,
-		float& fYMother,
-		float& fZMother,
-		float& fMotherRadius,
-		float& fMotherScaleFactor,
-		unsigned int& unLevel,
-		Shader& shader);
-	/*DrawTopSpheres Level2*/
-	void DrawTopSpheresLevel2(float& fXMother,
-		float& fYMother,
-		float& fZMother,
-		float& fMotherRadius,
-		float& fMotherScaleFactor,
-		unsigned int& unLevel,
-		Shader& shader);
-
-	/*Functions changing levels*/
-	std::function<void(float& fXMother,
-		float& fYMother,
-		float& fZMother,
-		float& fMotherRadius,
-		float& fMotherScaleFactor,
-		unsigned int& unLevel,
-		Shader& shader)> DrawCurrentSideSphereLevel;
-
-	std::function<void(float& fXMother,
-		float& fYMother,
-		float& fZMother,
-		float& fMotherRadius,
-		float& fMotherScaleFactor,
-		unsigned int& unLevel,
-		Shader& shader)> DrawCurrentTopSphereLevel;
-
 public:
 
 	/*Creating instance from Renderer*/

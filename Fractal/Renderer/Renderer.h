@@ -42,7 +42,7 @@ public:
 	void SwapBuffers();
 
 	/*Function called in every cycle only to do some calculations*/
-	void Process(Shader& shader);
+	void Process();
 	
 	/*Setters for all Renderer data*/
 	void SetScreenWidth(const unsigned int& unScreenWidth);

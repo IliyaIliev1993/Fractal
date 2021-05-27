@@ -53,7 +53,7 @@ bool Renderer::Init(const unsigned int& unScreenWidth,
 	return true;
 }
 
-void Renderer::Process(Shader& shader)
+void Renderer::Process()
 {
 	float fCurrentTime = static_cast<float>(glfwGetTime());
 	m_fDeltaTime = fCurrentTime - m_fLastFrameTime;
