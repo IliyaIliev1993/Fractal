@@ -66,9 +66,14 @@ void Renderer::ClearGlobalColor()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::DrawPolygonLineMode()
+void Renderer::EnableDrawPolygonLineMode()
 {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
+
+void Renderer::DisableDrawPolygonLineMode()
+{
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void Renderer::SwapBuffers()

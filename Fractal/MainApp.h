@@ -5,6 +5,7 @@
 #include "Renderer/Renderer.h"
 #include "Camera/Camera.h"
 #include "Sphere/Sphere.h"
+#include "Texture/Texture2D.h"
 
 class MainApp
 {
@@ -19,6 +20,7 @@ private:
 
 	/*Shaders*/
 	Shader m_ShaderSphere;
+	Shader m_ShaderTexture;
 
 	/*Sphere and details*/
 	Sphere m_sphere;
@@ -26,6 +28,9 @@ private:
 	unsigned int m_unLongitudeSlices = 20;
 	unsigned int m_unLatitudeSlices = 20;
 	unsigned int m_unMaxLevels = 1;
+
+	/*Textures*/
+	Texture2D m_textureFloor;
 
 	/*MainFunction, it will be called only if we have some process input*/
 	bool m_bPressedLeft = false;

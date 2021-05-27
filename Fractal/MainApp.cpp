@@ -34,9 +34,11 @@ bool MainApp::Init()
 	glfwSetInputMode(m_rend->GetWindowPtr(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	m_ShaderSphere.Create("Data/Shaders/vertex_shader_sphere.txt", "Data/Shaders/fragment_shader_sphere.txt");
+	m_ShaderTexture.Create("Data/Shaders/vertex_shader_texture_2D.txt", "Data/Shaders/fragment_shader_texture_2D.txt");
 	m_sphere.Init(m_fMainMotherSpereRadius, 
 			      m_unLongitudeSlices, 
 			      m_unLongitudeSlices);
+	m_textureFloor.LoadFromFile("Data/Pic/floor.jpg");
 
 	return true;
 }
@@ -228,9 +230,9 @@ void MainApp::Run()
 		m_ShaderSphere.use();
 		HandleEvent(m_rend->GetWindowPtr());
 		m_camera->Process(m_ShaderSphere);
+		m_camera->Process(m_ShaderTexture);
 		m_rend->Process();
 		m_rend->ClearGlobalColor();
-		m_rend->DrawPolygonLineMode();
 
 		float fXMother = 0.0f;
 		float fYMother = 0.0f;
@@ -238,6 +240,8 @@ void MainApp::Run()
 		float fMainMotherSphereRadius = m_fMainMotherSpereRadius;
 	    float fCurrentScaleFactor = 2 * fMainMotherSphereRadius;
 	
+		/*Draw Fractal*/
+		m_rend->EnableDrawPolygonLineMode();
 		DrawMotherSphere(fXMother,
 			fYMother,
 			fZMother,
@@ -245,6 +249,14 @@ void MainApp::Run()
 			fCurrentScaleFactor,
 			m_unMaxLevels,
 			m_ShaderSphere);
+
+		/*Draw floor texture*/
+		m_rend->DisableDrawPolygonLineMode();
+		glm::mat4 modelTexture = glm::mat4(1.0f);
+		modelTexture = glm::translate(modelTexture, glm::vec3(0.0f, -0.5f, 0.0f));
+		modelTexture = glm::scale(modelTexture, glm::vec3(10.0f, 10.0f, 10.0f));
+		modelTexture = glm::rotate(modelTexture, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		m_textureFloor.Draw(modelTexture, m_ShaderTexture);
 
 		m_rend->SwapBuffers();
 		glfwPollEvents();
@@ -308,4 +320,5 @@ void MainApp::DeInit()
 {
 	m_rend->DeInit();
 	m_sphere.DeInit();
+	m_textureFloor.Destroy();
 }

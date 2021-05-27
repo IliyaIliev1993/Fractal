@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Shader.h"
+#include "Texture2D.h"
 class Renderer
 {
 
@@ -36,8 +37,9 @@ public:
 
 	/*Function that clears the global background Color*/
 	void ClearGlobalColor();
-	/*Enable drawing Polygon Line Mode (used to debug)*/
-	void DrawPolygonLineMode();
+	/*Enable / Disable drawing Polygon Line Mode (used to debug)*/
+	void EnableDrawPolygonLineMode();
+	void DisableDrawPolygonLineMode();
 	/*Swapping buffers*/
 	void SwapBuffers();
 
